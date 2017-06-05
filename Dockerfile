@@ -34,7 +34,7 @@ ENV \
 
     # - PKG_*: the needed applications for installation
     PKG_DEV="make gcc g++ automake autoconf python-dev openssl-dev libffi-dev" \
-    PKG_DOWNLOAD="curl wget"
+    PKG_DOWNLOAD="curl wget" \
     PKG_PYTHON="ca-certificates py2-pip python2 py-libxml2 py-lxml" \
     PKG_COMPRESS="unrar unzip tar p7zip bzip2 zlib xz tar" \
     PKG_ADDONS="ffmpeg" 
@@ -68,9 +68,9 @@ RUN \
 
     # install nzbget
     curl -o \
-    /tmp/json -L \
+    /nzbget/versions.json -L \
        http://nzbget.net/info/nzbget-version-linux.json && \
-    NZBGET_VERSION=$(grep "${NZBGET_BRANCH}" /tmp/json  | cut -d '"' -f 4) && \
+    NZBGET_VERSION=$(grep "${NZBGET_BRANCH}" /nzbget/versions.json | cut -d '"' -f 4) && \
     curl -o \
     /tmp/nzbget.run -L \
        "${NZBGET_VERSION}" && \
