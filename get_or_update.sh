@@ -43,3 +43,11 @@ fi
 # see at https://github.com/clinton-hall/nzbToMedia.git
 source /init/checkout.sh "nzbToMedia" "$NZBTOMEDIA_BRANCH" "$NZBTOMEDIA_REPO" "$APP_HOME/config/scripts"
 
+source /init/checkout.sh "mp4_automator" "$MP4_AUTOMATOR_BRANCH" "$MP4_AUTOMATOR_REPO" "$APP_HOME/MP4_Automator"
+
+#append mp4_automator to ScriptDir if not done already
+if ! grep -q "$APP_HOME/MP4_Automator" /defaults/nzbget.conf; then
+	sed -i \
+		-e 	'\|^ScriptDir|s|$|;/nzbget/MP4_Automator|' \
+		/defaults/nzbget.conf
+fi

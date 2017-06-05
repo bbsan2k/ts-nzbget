@@ -32,6 +32,10 @@ ENV \
     NZBTOMEDIA_REPO="https://github.com/clinton-hall/nzbToMedia.git" \
     NZBTOMEDIA_BRANCH="master" \
 
+    # - MP4_AUTOMATOR_REPO, MP4_AUTOMATOR_BRANCH: mp4_automator GitHub repository and related branch
+    MP4_AUTOMATOR_REPO="https://github.com/mdhiggins/sickbeard_mp4_automator.git" \
+    MP4_AUTOMATOR_BRANCH="master" \
+
     # - PKG_*: the needed applications for installation
     PKG_DEV="make gcc g++ automake autoconf python-dev openssl-dev libffi-dev" \
     PKG_DOWNLOAD="curl wget" \
