@@ -76,11 +76,6 @@ RUN \
        "${NZBGET_VERSION}" && \
     sh /tmp/nzbget.run --destdir /nzbget/app && \
 
-    # cleanup
-     rm -rf \
-        /tmp/*
-
-
     # cleanup temporary files
     rm -rf /tmp && \
     rm -rf /var/cache/apk/*
