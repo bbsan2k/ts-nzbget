@@ -6,17 +6,19 @@
 NZBGET_VERSION=$(grep "${NZBGET_CHANNEL}-version" /nzbget/versions.json  | cut -d '"' -f 4)
 echo "[INFO] Installed version is $NZBGET_VERSION"
 
-curl -o /tmp/versions.json -L http://nzbget.net/info/nzbget-version-linux.json
-NZBGET_LATEST_VERSION=$(grep "${NZBGET_CHANNEL}-version" /tmp/versions.json  | cut -d '"' -f 4)
+curl -o /nzbget/versions.json -L http://nzbget.net/info/nzbget-version-linux.json
+NZBGET_LATEST_VERSION=$(grep "${NZBGET_CHANNEL}-version" /nzbget/versions.json  | cut -d '"' -f 4)
 echo "[INFO] Latest version is $NZBGET_LATEST_VERSION"
 
 if [ "$NZBGET_VERSION" != "$NZBGET_LATEST_VERSION" ]; then
 	echo "[INFO] Updating nzbget to $NZBGET_LATEST_VERSION"
-	NZBGET_LATEST_URL=$(grep "${NZBGET_CHANNEL}-download" /tmp/versions.json  | cut -d '"' -f 4)
+	mkdir /tmp
+	NZBGET_LATEST_URL=$(grep "${NZBGET_CHANNEL}-download" /nzbget/versions.json  | cut -d '"' -f 4)
 	curl -o \
 	/tmp/nzbget.run -L "${NZBGET_LATEST_URL}"
+	
     sh /tmp/nzbget.run --destdir /nzbget/app
-    mv /tmp/versions.json /nzbget/
+    rm -rf /tmp
 fi
 
 # remove nzbget lock files
