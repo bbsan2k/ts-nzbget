@@ -3,17 +3,18 @@
 # get or update all parts for the APP
 
 # download the latest version of the SABnzbd
-NZBGET_VERSION=$(grep "${NZBGET_CHANNEL}" /nzbget/versions.json  | cut -d '"' -f 4)
+NZBGET_VERSION=$(grep "${NZBGET_CHANNEL}-version" /nzbget/versions.json  | cut -d '"' -f 4)
 echo "[INFO] Installed version is $NZBGET_VERSION"
 
 curl -o /tmp/versions.json -L http://nzbget.net/info/nzbget-version-linux.json
-NZBGET_LATEST_VERSION=$(grep "${NZBGET_CHANNEL}" /tmp/versions.json  | cut -d '"' -f 4)
+NZBGET_LATEST_VERSION=$(grep "${NZBGET_CHANNEL}-version" /tmp/versions.json  | cut -d '"' -f 4)
 echo "[INFO] Latest version is $NZBGET_LATEST_VERSION"
 
 if [ "$NZBGET_VERSION" != "$NZBGET_LATEST_VERSION" ]; then
 	echo "[INFO] Updating nzbget to $NZBGET_LATEST_VERSION"
+	NZBGET_LATEST_URL=$(grep "${NZBGET_CHANNEL}-download" /tmp/versions.json  | cut -d '"' -f 4)
 	curl -o \
-	/tmp/nzbget.run -L "${NZBGET_LATEST_VERSION}"
+	/tmp/nzbget.run -L "${NZBGET_LATEST_URL}"
     sh /tmp/nzbget.run --destdir /nzbget/app
     mv /tmp/versions.json /nzbget/
 fi

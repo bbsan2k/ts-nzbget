@@ -29,7 +29,7 @@ ENV \
     DOWNLOADS="/downloads" \
 
     # NZBGET_BRANCH
-    NZBGET_CHANNEL="stable-version" \
+    NZBGET_CHANNEL="stable" \
 
     # - NZBTOMEDIA_REPO, NZBTOMEDIA_BRANCH: nzbToMedia GitHub repository and related branch
     NZBTOMEDIA_REPO="https://github.com/clinton-hall/nzbToMedia.git" \
@@ -77,7 +77,7 @@ RUN \
     curl -o \
     /nzbget/versions.json -L \
        http://nzbget.net/info/nzbget-version-linux.json && \
-    NZBGET_VERSION=$(grep "${NZBGET_BRANCH}" /nzbget/versions.json | cut -d '"' -f 4) && \
+    NZBGET_VERSION=$(grep "${NZBGET_CHANNEL}-download" /nzbget/versions.json | cut -d '"' -f 4) && \
     curl -o \
     /tmp/nzbget.run -L \
        "${NZBGET_VERSION}" && \
