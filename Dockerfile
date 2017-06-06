@@ -69,7 +69,7 @@ RUN \
     # create the APP folder structure
     mkdir -p $APP_HOME/app && \
     mkdir -p $APP_HOME/config && \
-    mkdir -p $APP_HOME/config/scripts && \
+    mkdir -p $APP_HOME/scripts && \
     mkdir -p $DOWNLOADS/complete && \
     mkdir -p $DOWNLOADS/incomplete && \
 
@@ -98,7 +98,7 @@ COPY *.sh /init/
 WORKDIR $APP_HOME/app
 
 # Set volumes for the the APP folder structure
-VOLUME $APP_HOME/config $DOWNLOADS /scripts
+VOLUME $APP_HOME/config $DOWNLOADS
 
 # Expose ports
 EXPOSE 6789
