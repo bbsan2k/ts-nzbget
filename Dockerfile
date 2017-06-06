@@ -7,7 +7,7 @@ LABEL image.version="1.0" \
       url.github="https://github.com/bbsan2k/ts-nzbget" \
       url.support="https://cytec.us/forum"
 
-ARG NZBGET_BRANCH="stable-download"
+ARG NZBGET_BRANCH="stable-version"
 
 
 # Set basic environment settings
@@ -27,6 +27,9 @@ ENV \
 
     # - DOWNLOADS: main download folder
     DOWNLOADS="/downloads" \
+
+    # NZBGET_BRANCH
+    NZBGET_CHANNEL="stable-version" \
 
     # - NZBTOMEDIA_REPO, NZBTOMEDIA_BRANCH: nzbToMedia GitHub repository and related branch
     NZBTOMEDIA_REPO="https://github.com/clinton-hall/nzbToMedia.git" \
