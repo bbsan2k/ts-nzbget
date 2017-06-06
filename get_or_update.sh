@@ -37,11 +37,6 @@ if [ ! -e /defaults/nzbget.conf ]; then
 	/defaults/nzbget.conf
 fi
 
-# check if config exists in /config, copy if not
-if [[ ! -e /nzbget/config/nzbget.conf ]]; then
-	cp /defaults/nzbget.conf /nzbget/config/nzbget.conf
-fi
-
 
 # download the latest version of the nzbToMedia
 # see at https://github.com/clinton-hall/nzbToMedia.git
@@ -62,4 +57,9 @@ if ! grep -q "/scripts/MP4_Automator" /defaults/nzbget.conf; then
 	sed -i \
 		-e 	'\|^ScriptDir|s|$|;/scripts/MP4_Automator|' \
 		/defaults/nzbget.conf
+fi
+
+# check if config exists in /config, copy if not
+if [[ ! -e /nzbget/config/nzbget.conf ]]; then
+	cp /defaults/nzbget.conf /nzbget/config/nzbget.conf
 fi
