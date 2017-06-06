@@ -57,6 +57,8 @@ if ! grep -q "/nzbget/scripts/MP4_Automator" /defaults/nzbget.conf; then
 	sed -i \
 		-e 	'\|^ScriptDir|s|$|;/nzbget/scripts/MP4_Automator|' \
 		/defaults/nzbget.conf
+	cp /nzbget/scripts/MP4_Automator/autoProcess.ini.sample /nzbget/scripts/MP4_Automator/autoProcess.ini
+	echo "NZBGetPostProcess.py:MP4_FOLDER=/nzbget/scripts/MP4_Automator" >> /defaults/nzbget.conf
 fi
 
 # check if config exists in /config, copy if not
