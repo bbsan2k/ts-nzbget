@@ -98,7 +98,7 @@ COPY *.sh /init/
 WORKDIR $APP_HOME/app
 
 # Set volumes for the the APP folder structure
-VOLUME $APP_HOME/config $DOWNLOADS 
+VOLUME $APP_HOME/config $DOWNLOADS /scripts
 
 # Expose ports
 EXPOSE 6789

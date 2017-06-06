@@ -45,13 +45,21 @@ fi
 
 # download the latest version of the nzbToMedia
 # see at https://github.com/clinton-hall/nzbToMedia.git
-source /init/checkout.sh "nzbToMedia" "$NZBTOMEDIA_BRANCH" "$NZBTOMEDIA_REPO" "$APP_HOME/config/scripts"
+source /init/checkout.sh "nzbToMedia" "$NZBTOMEDIA_BRANCH" "$NZBTOMEDIA_REPO" "/scripts/nzbToMedia"
 
-source /init/checkout.sh "mp4_automator" "$MP4_AUTOMATOR_BRANCH" "$MP4_AUTOMATOR_REPO" "$APP_HOME/MP4_Automator"
+
+#append nzbToMedia to ScriptDir if not done already
+if ! grep -q "/scripts/nzbToMedia" /defaults/nzbget.conf; then
+	sed -i \
+		-e 	'\|^ScriptDir|s|$|;/scripts/nzbToMedia|' \
+		/defaults/nzbget.conf
+fi
+
+source /init/checkout.sh "mp4_automator" "$MP4_AUTOMATOR_BRANCH" "$MP4_AUTOMATOR_REPO" "/scripts/MP4_Automator"
 
 #append mp4_automator to ScriptDir if not done already
-if ! grep -q "$APP_HOME/MP4_Automator" /defaults/nzbget.conf; then
+if ! grep -q "/scripts/MP4_Automator" /defaults/nzbget.conf; then
 	sed -i \
-		-e 	'\|^ScriptDir|s|$|;/nzbget/MP4_Automator|' \
+		-e 	'\|^ScriptDir|s|$|;/scripts/MP4_Automator|' \
 		/defaults/nzbget.conf
 fi
