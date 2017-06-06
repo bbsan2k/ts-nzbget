@@ -7,7 +7,7 @@ LABEL image.version="1.0" \
       url.github="https://github.com/bbsan2k/ts-nzbget" \
       url.support="https://cytec.us/forum"
 
-ARG NZBGET_BRANCH="stable-version"
+ARG NZBGET_BRANCH="stable"
 
 
 # Set basic environment settings
